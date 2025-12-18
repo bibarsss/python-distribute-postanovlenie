@@ -35,13 +35,12 @@ legal.mkdir(exist_ok=True)
 nova = base_path / 'CreditNOVA'
 nova.mkdir(exist_ok=True)
 
+print('Идет распределение...')
 for file_path in base_path.glob("*.pdf"):
     text = " ".join(read(str(file_path)).splitlines())
 
-    if 'ПОСТАНОВЛЕНИЕ' not in text:
+    if 'ПОСТАНОВЛЕНИЕ об отменеисполнительнойнадписи' not in text:
         continue
-
-    print(file_path.name)
 
     if 'CreditNOVA' in text:
         target = unique_target(nova, file_path)
